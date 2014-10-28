@@ -1,0 +1,33 @@
+<ion-view title={{myTitle}} animation="slide-in-up">
+    <ion-nav-buttons side="right">
+      <a class="button button-icon icon ion-ios7-gear" ui-sref='settings'></a>
+    </ion-nav-buttons>
+  <ion-content ng-controller="CardsCtrl">
+    <td-cards>
+      <td-card ng-repeat="card in cards" on-destroy="cardDestroyed($index)" on-swipe-left="cardSwipedLeft($index)" on-swipe-right="cardSwipedRight($index)" on-partial-swipe="cardPartialSwipe(amt)" class="card-{{card.index}}" ng-controller="CardCtrl">
+          <div class="image" ng-click="onTap()">
+            <div class="yes-text" ng-style="leftTextOpacity">LIKE</div>
+            <img ng-src="{{card.image}}">
+            <div class="no-text" ng-style="rightTextOpacity">NOPE</div>
+          </div>
+        </td-card>
+      </td-cards>
+
+    <div class="well">
+        <div class="row">
+            <button id="trashbutton" class="btn btn-negative pull-right"
+        ng-click="onSwipeLeft()"><span class="icon ion-trash-a"></span></button>
+
+            <button id="infobutton" class="btn btn-info pull-right"
+        ng-click="share()"><span class="icon ion-ios7-upload-outline"></span></button>
+
+            <button id="yumbutton" class="btn btn-positive pull-left"
+        ng-click="onSwipeRight()"><span class="icon ion-fork"></span></button>
+        </div>
+    </div>
+  </ion-content>
+
+<ion-footer-bar class="bar-assertive" on-swipe-up="swipeQueue()" on-tap="swipeQueue()">
+  <h1 class="title">Queue</h1>
+</ion-footer-bar>
+</ion-view>
